@@ -3,7 +3,7 @@ package au.edu.unsw.soacourse.books.dao;
 import java.util.HashMap;
 import java.util.Map;
 
-import au.edu.unsw.soacourse.books.model.Book;
+import au.edu.unsw.soacourse.hrSystem.model.Book;
 
 
 public enum BooksDao {

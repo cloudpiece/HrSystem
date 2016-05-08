@@ -22,7 +22,7 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.UriInfo;
 
 import au.edu.unsw.soacourse.books.dao.BooksDao;
-import au.edu.unsw.soacourse.books.model.Book;
+import au.edu.unsw.soacourse.hrSystem.model.Book;
 
 @Path("/books")
 public class BooksResource {

@@ -1,4 +1,4 @@
-package au.edu.unsw.soacourse.books.model;
+package au.edu.unsw.soacourse.hrSystem.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
