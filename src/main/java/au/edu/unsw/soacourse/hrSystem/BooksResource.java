@@ -1,4 +1,4 @@
-package au.edu.unsw.soacourse.books;
+package au.edu.unsw.soacourse.hrSystem;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.UriInfo;
 
-import au.edu.unsw.soacourse.books.dao.BooksDao;
+import au.edu.unsw.soacourse.hrSystem.dao.BooksDao;
 import au.edu.unsw.soacourse.hrSystem.model.Book;
 
 @Path("/books")

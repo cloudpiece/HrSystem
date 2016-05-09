@@ -15,7 +15,7 @@ import org.codehaus.jackson.map.MappingJsonFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import au.edu.unsw.soacourse.books.JsonBean;
+import au.edu.unsw.soacourse.hrSystem.JsonBean;
 
 public class HelloWorldIT {
     private static String endpointUrl;

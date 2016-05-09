@@ -1,4 +1,4 @@
-package au.edu.unsw.soacourse.books;
+package au.edu.unsw.soacourse.hrSystem;
 
 
 public class JsonBean {
