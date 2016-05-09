@@ -21,21 +21,45 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.UriInfo;
 
-import au.edu.unsw.soacourse.hrSystem.dao.BooksDao;
+
 import au.edu.unsw.soacourse.hrSystem.dao.UserProfileDao;
 import au.edu.unsw.soacourse.hrSystem.model.UserProfile;
 @Path("/userProfile")
 public class userProfileRs {
 	// Return the list of books for client applications/programs
-	
+	 UserProfileDao userProfileDao = new UserProfileDao();
+		@Context
+		UriInfo uriInfo;
+		@Context
+		Request request;
 		@GET
 		@Path("{userProfile}")
 		@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-		public UserProfile getBook(@PathParam("userProfile") UserProfile userp) {
-		String b = UserProfileDao.get(id);
-		if(b==null)
-			throw new RuntimeException("GET: Book with" + id +  " not found");
+		public UserProfile getUserProfile(@PathParam("userProfile") String userID) {
+			UserProfile b = userProfileDao.get(userID);
+			
+		if(b==null) {
+			throw new RuntimeException("GET: userProfile with" + userID +  " not found");
+		}
 		return b;
+		}
+		
+		@PUT
+		@Path("{userProfile}")
+		@Consumes(MediaType.APPLICATION_XML)
+		public Response putUserProfile(UserProfile b) {
+			return putAndGetResponse(b);
+			//TODO: Fix here so that it returns the updated book
+		}
+		private Response putAndGetResponse(UserProfile b) {
+			Response res;
+			if(userProfileDao.get(b.getId()) != null) {
+				res = Response.noContent().build();
+			} else {
+				res = Response.created(uriInfo.getAbsolutePath()).build();
+			}
+			userProfileDao.put(b);
+			return res;
 		}
 
 }

@@ -1,13 +1,15 @@
 package au.edu.unsw.soacourse.hrSystem.model;
 
+import java.util.UUID;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class UserProfile {
 
-    private String userID;
-    private String name;
-    private String email;
+    private String userID = "";
+    private String name = "";
+    private String email = "";
     private String addr;
     private String telNum;
     private String curPos;
@@ -19,10 +21,24 @@ public class UserProfile {
     public UserProfile(){
 
     }
-    public UserProfile (String id, String name, String email){
+    public UserProfile (String name, String email){
+
+    	userID = UUID.randomUUID().toString();
+        this.name = name;
+        this.email = email;
+    }
+    public UserProfile (String id, String name, String email,String addr,String telNum,String curPos,String education,String skills,String experience,String perDsp){
         this.userID = id;
         this.name = name;
         this.email = email;
+        this.addr = addr;
+        this.telNum = telNum;
+        this.curPos = curPos;
+        this.education = education;
+        this.skills = skills;
+        this.experience = experience;
+        this.perDsp = perDsp;
+
     }
     public String getId() {
         return userID;
