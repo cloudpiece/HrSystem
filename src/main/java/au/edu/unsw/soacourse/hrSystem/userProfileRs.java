@@ -61,5 +61,29 @@ public class userProfileRs {
 			userProfileDao.put(b);
 			return res;
 		}
+		@POST
+		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+		public void newUserProfile(
+				@FormParam("name") String name,
+				@FormParam("email") String email,
+				@FormParam("addr") String addr,
+				@FormParam("telNum") String telNum,
+				@FormParam("curPos") String curPos,
+				@FormParam("education") String education,
+				@FormParam("skills") String skills,
+				@FormParam("experience") String experience,
+				@FormParam("perDsp") String perDsp
+		) throws IOException {
+			UserProfile b = new UserProfile(name,email);
+			if (addr!=null) b.setAddr(addr);
+			if (telNum!=null) b.setTelNum(telNum);
+			if (curPos!=null) b.setCurPos(curPos);
+			if (education!=null) b.setEducation(education);
+			if (skills!=null) b.setSkills(skills);
+			if (experience!=null) b.setExp(experience);
+			if (perDsp!=null) b.setPerDsp(perDsp);
+			userProfileDao.post(b);
+
+		}
 
 }

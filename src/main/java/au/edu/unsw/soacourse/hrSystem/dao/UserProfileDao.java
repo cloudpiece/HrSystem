@@ -5,10 +5,8 @@ import java.util.List;
 import au.edu.unsw.soacourse.hrSystem.model.UserProfile;
 public class UserProfileDao {
 	public static String dbAddr = "jdbc:sqlite:/Users/zhangyun/git/HelloWorldCxfRest/db/foundITServer.db";  
-	 public  void put(UserProfile userProfile){
-
-	         
-
+	
+	public  UserProfile put(UserProfile userProfile){
 	         StringBuilder sql = new StringBuilder();
 	         sql.append("UPDATE  tb_userProfile SET name ='").append(userProfile.getName()).append("'");
 	         sql.append(", email ='").append(userProfile.getEmail()).append("'");
@@ -22,8 +20,43 @@ public class UserProfileDao {
 	         sql.append("WHERE userID = '").append(userProfile.getId()).append("';");
 	         System.out.println("sql is "+sql.toString()+"\n");
 	         
-	         ConnectDB.updateDB(dbAddr, sql.toString());
+	        // ConnectDB.updateDB(dbAddr, sql.toString());
+	         
+	         try {
+	        	 List<UserProfile> files  = ConnectDB.executeSQL(dbAddr,sql.toString(), new UserProfileParser());
+	             if(files != null && !files.isEmpty())
+	                 return files.get(0);
+	         } catch (SQLException e) {
+	             e.printStackTrace();
+	         }
+	         return null;
 	 }
+	
+	public  boolean post(UserProfile userProfile){
+	
+        String sql = "INSERT into  tb_userProfile VALUES ('"
+        		+ userProfile.getId() + "','"
+        		+userProfile.getName() +"','"
+        		+userProfile.getEmail() +"','"
+        		+userProfile.getAddr() +"','"
+        		+userProfile.getTelNum() +"','"
+        		+userProfile.getCurPos() +"','"
+        		+userProfile.getEducation() +"','"
+        		+userProfile.getSkills() +"','"
+        		+userProfile.getExp() +"','"
+        		+userProfile.getPerDsp() +"');";
+
+        System.out.println("sql is "+sql.toString()+"\n");
+        
+        try {
+        	ConnectDB.executeSQL(dbAddr,sql, null);
+            return  true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+}
 	public  UserProfile get(String userID) {
          String sql = "SELECT * FROM tb_userProfile where userID='"+userID+"';";
          try {
@@ -33,8 +66,6 @@ public class UserProfileDao {
          } catch (SQLException e) {
              e.printStackTrace();
          }
-        
-
 	return null;
 	}
 
